@@ -8,6 +8,7 @@ const prompts = require("prompts");
 const chalk   = require("chalk");
 const zip     = require("bestzip");
 const fs      = require("fs");
+const request = require("request");
 
 
 // Server URL
@@ -81,7 +82,11 @@ const submitAssignment = async (assignment, student) => {
             destination: `../${zipfile}`,
             cwd: assignment,
         });
-        await sendFile(zipfile, host);
+        console.log("Assignment code has been zipped. Now uploading, please wait...");
+        await sendFile(zipfile, host, {
+            user: student.onyen,
+            pass: student.password
+        });
         console.log(chalk.green("Success! Visit comp426.com to see your grade."));
     } catch (error) {
         console.log(chalk.red("Something went wrong and your assignment was not submitted for grading."));
@@ -93,8 +98,21 @@ const submitAssignment = async (assignment, student) => {
 
 
 // Sends a file to the server
-const sendFile = async (filepath, url) => {
-    // TODO
+const sendFile = async (filepath, url, auth) => {
+    return new Promise(function(resolve, reject) {
+        fs.createReadStream(filepath).pipe(request({
+            uri: url,
+            method: "POST",
+            auth: auth,
+            callback: (error, response, body) => {
+                if (error) {
+                    reject(error, response);
+                } else {
+                    resolve(body, response);
+                }
+            },
+        }));
+    });
 }
 
 

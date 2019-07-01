@@ -81,7 +81,7 @@ const submitAssignment = async (assignment, student) => {
             destination: `../${zipfile}`,
             cwd: assignment,
         });
-        // TODO: submit assignment
+        await sendFile(zipfile, host);
         console.log(chalk.green("Success! Visit comp426.com to see your grade."));
     } catch (error) {
         console.log(chalk.red("Something went wrong and your assignment was not submitted for grading."));
@@ -89,6 +89,12 @@ const submitAssignment = async (assignment, student) => {
     } finally {
         fs.unlinkSync(zipfile);
     }
+}
+
+
+// Sends a file to the server
+const sendFile = async (filepath, url) => {
+    // TODO
 }
 
 

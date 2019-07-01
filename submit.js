@@ -12,6 +12,7 @@ const request = require("request");
 
 
 // Server URL
+// TODO: This will eventually become a cs.unc.edu URL once we have a server
 const host = "https://comp426.com";
 
 // Zip file name

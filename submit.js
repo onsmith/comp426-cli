@@ -61,13 +61,11 @@ const getAuthentication = async () => {
         type: "text",
         name: "onyen",
         message: "What is your onyen?",
-        format: x => x.trim().toLowerCase(),
         validate: x => x.length === 0 ? "Your onyen can't be blank" : true,
     }, {
         type: "password",
         name: "password",
         message: "What is your COMP 426 account password?",
-        format: x => x.trim().toLowerCase(),
         validate: x => x.length < 8 ? "COMP 426 passwords must be at least 8 characters long" : true,
     }]);
 }

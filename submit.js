@@ -20,16 +20,16 @@ const zipfile = "submission.zip";
 
 // Accepted assignments
 const assignments = [
-    "a0",
-    "a1",
-    "a2",
-    "a3",
-    "a4",
-    "a5",
-    "a6",
-    "a7",
-    "a8",
-    "a9",
+    "a00",
+    "a01",
+    "a02",
+    "a03",
+    "a04",
+    "a05",
+    "a06",
+    "a07",
+    "a08",
+    "a09",
     "a10",
 ];
 

@@ -157,10 +157,10 @@ const submitAssignment = async (assignment, student) => {
             cwd: assignment,
         });
         console.log("Assignment code has been zipped. Now uploading, please wait...");
-        // await sendFile(zipfile, host, {
-        //     user: student.onyen,
-        //     pass: student.password
-        // });
+        await sendFile(zipfile, host, {
+            user: student.onyen,
+            pass: student.password
+        });
         console.log(chalk.green("Success! Visit comp426.com to see your grade."));
     } catch (error) {
         console.log(chalk.red("Something went wrong and your assignment was not submitted for grading."));

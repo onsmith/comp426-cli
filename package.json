@@ -4,13 +4,15 @@
   "description": "This is the command-line interface (cli) for COMP 426 taught at the University of North Carolina at Chapel Hill. All assignments in COMP 426 must be submitted for grading using this tool.",
   "main": "submit.js",
   "scripts": {
-    "submit": "node submit.js"
+    "submit": "node -r dotenv/config submit.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bestzip": "^2.1.4",
     "chalk": "^2.4.2",
+    "cryptr": "^4.0.2",
+    "dotenv": "^8.0.0",
     "prompts": "^2.1.0",
     "request": "^2.88.0"
   }

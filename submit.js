@@ -4,11 +4,12 @@
 
 
 // Dependencies
+const request = require("request");
 const prompts = require("prompts");
+const cryptr  = new (require("cryptr"))("hyNcEaR63qTk13TQmHkr");
 const chalk   = require("chalk");
 const zip     = require("bestzip");
 const fs      = require("fs");
-const request = require("request");
 
 
 // Server URL
@@ -17,6 +18,9 @@ const host = "https://comp426.com";
 
 // Zip file name
 const zipfile = "submission.zip";
+
+// Environment variable file name
+const envfile = ".env";
 
 // Accepted assignments
 const assignments = [
@@ -49,16 +53,75 @@ const getAssignment = async () => {
         message: "Which assignment do you want to submit for grading?",
         choices: assignments,
     })).assignment];
-}
+};
+
+
+// Asks the user if they want to save the login information
+const promptRememberLogin = async (student) => {
+    const shouldStoreCredentials = (await prompts({
+        type: "select",
+        name: "answer",
+        message: "Do you want the system to remember your onyen and password?",
+        choices: ["yes", "no"],
+    })).answer === 0;
+
+    if (shouldStoreCredentials) {
+        try {
+            const encryptedPassword = cryptr.encrypt(student.password);
+            const contents = `ONYEN=${student.onyen}\nENCRYPTED_PASSWORD=${encryptedPassword}\n`;
+            fs.writeFileSync(envfile, contents);
+        } catch (error) {
+            console.log(chalk.red("Something went wrong and your user credentials were not stored."));
+            console.log(chalk.red(`Error message: ${error.message}`));
+            console.log(chalk.red("The program will still try to submit your assignment."));
+        }
+    }
+};
+
+
+// Tries to retrieve student credentials from the environment variables
+const getAuthFromEnv = async () => {
+    const student = {
+        onyen: process.env.ONYEN,
+        password: process.env.ENCRYPTED_PASSWORD,
+    };
+
+    if (student.onyen === undefined || student.password === undefined) {
+        throw new Error("No stored credentials could be found.");
+    }
+
+    student.password = cryptr.decrypt(student.password);
+
+    const shouldUseAuthFromEnv = (await prompts({
+        type: "select",
+        name: "answer",
+        message: `Do you want to submit the assignment as user ${student.onyen}?`,
+        choices: ["yes", "no"],
+    })).answer === 0;
+
+    if (!shouldUseAuthFromEnv) {
+        throw new Error("User elected not to use saved credentials");
+    }
+
+    return student;
+};
 
 
 // Retrieves student credentials
-const getAuthentication = async () => {
-    // Try to get the value from environment variables
-    // TODO
+const getAuth = async () => {
+    // Try to retrieve student credentials from environment variables
+    try {
+        const student = await getAuthFromEnv();
+        student.source = "env";
+        return student;
+    } catch (error) {
+        // Intentionally empty
+    }
 
-    // Get the value by prompting the user
-    return await prompts([{
+    // If no environment variables exist, then prompt the user
+    console.log(chalk.yellow("\nThe system needs your COMP 426 username and password in order to submit"));
+    console.log(chalk.yellow("your assignment. Please enter this information below."));
+    const student = await prompts([{
         type: "text",
         name: "onyen",
         message: "What is your onyen?",
@@ -69,11 +132,23 @@ const getAuthentication = async () => {
         message: "What is your COMP 426 account password?",
         validate: x => x.length < 8 ? "COMP 426 passwords must be at least 8 characters long" : true,
     }]);
-}
+    student.source = "cli";
+    return student;
+};
 
 
 // Submits an assignment
 const submitAssignment = async (assignment, student) => {
+    if (assignment === undefined) {
+        console.log(chalk.red("Something went wrong and your assignment was not submitted for grading."));
+        console.log(chalk.red("The assignment number you specified is missing or invalid."));
+        return false;
+    } else if (student === undefined || student.onyen === undefined || student.password === undefined) {
+        console.log(chalk.red("Something went wrong and your assignment was not submitted for grading."));
+        console.log(chalk.red("The student login credentials are missing or invalid."));
+        return false;
+    }
+
     console.log(`\nSubmitting assignment ${chalk.blue(assignment)} for user ${chalk.blue(student.onyen)}...`);
     try {
         await zip({
@@ -82,18 +157,21 @@ const submitAssignment = async (assignment, student) => {
             cwd: assignment,
         });
         console.log("Assignment code has been zipped. Now uploading, please wait...");
-        await sendFile(zipfile, host, {
-            user: student.onyen,
-            pass: student.password
-        });
+        // await sendFile(zipfile, host, {
+        //     user: student.onyen,
+        //     pass: student.password
+        // });
         console.log(chalk.green("Success! Visit comp426.com to see your grade."));
     } catch (error) {
         console.log(chalk.red("Something went wrong and your assignment was not submitted for grading."));
         console.log(chalk.red(`Error message: ${error.message}`));
+        return false;
     } finally {
         fs.unlinkSync(zipfile);
     }
-}
+
+    return true;
+};
 
 
 // Sends a file to the server
@@ -112,7 +190,7 @@ const sendFile = async (filepath, url, auth) => {
             },
         }));
     });
-}
+};
 
 
 // Main program
@@ -124,10 +202,15 @@ const main = async () => {
     const assignment = await getAssignment();
 
     // Get student credentials
-    const student = await getAuthentication();
+    const student = await getAuth();
 
     // Submit assignment
-    await submitAssignment(assignment, student);
+    const success = await submitAssignment(assignment, student);
+
+    // Ask the user if they want to remember the login
+    if (success && student.source === "cli") {
+        await promptRememberLogin(student);
+    }
 };
 
 

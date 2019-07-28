@@ -4,17 +4,24 @@
 
 
 // Dependencies
-const request = require("request");
-const prompts = require("prompts");
-const cryptr  = new (require("cryptr"))("hyNcEaR63qTk13TQmHkr");
-const chalk   = require("chalk");
-const zip     = require("bestzip");
-const fs      = require("fs");
+const FormData = require('form-data');
+const Cryptr   = require("cryptr");
+const prompts  = require("prompts");
+const chalk    = require("chalk");
+const zip      = require("bestzip");
+const fs       = require("fs");
 
 
 // Server URL
-// TODO: This will eventually become a cs.unc.edu URL once we have a server
-const host = "https://comp426.com";
+//const host = "https://comp426fa19.cs.unc.edu";
+const server = {
+    host: "localhost",
+    port: 1337,
+    path: '/submissions',
+};
+
+// Max allowed zip file size
+const maxDataSize = 10 * 1024 * 1024;
 
 // Zip file name
 const zipfile = "submission.zip";
@@ -36,6 +43,10 @@ const assignments = [
     "a09",
     "a10",
 ];
+
+
+// Cryptr instance
+const cryptr = new Cryptr("hyNcEaR63qTk13TQmHkr");
 
 
 // Determines which assignment to submit
@@ -156,15 +167,22 @@ const submitAssignment = async (assignment, student) => {
             destination: `../${zipfile}`,
             cwd: assignment,
         });
+        // TODO: Check zip file size here and warn if it's too big
         console.log("Assignment code has been zipped. Now uploading, please wait...");
-        await sendFile(zipfile, host, {
-            user: student.onyen,
-            pass: student.password
+        await sendFile({
+            zippath: zipfile,
+            onyen: student.onyen,
+            password: student.password,
+            assignment: assignment,
         });
         console.log(chalk.green("Success! Visit comp426.com to see your grade."));
     } catch (error) {
         console.log(chalk.red("Something went wrong and your assignment was not submitted for grading."));
-        console.log(chalk.red(`Error message: ${error.message}`));
+        if (error.statusCode === 401) {
+            console.log(chalk.red(`Incorrect username or password.`))
+        } else {
+            console.log(chalk.red(`Error message: ${error.message}`));
+        }
         return false;
     } finally {
         fs.unlinkSync(zipfile);
@@ -175,20 +193,25 @@ const submitAssignment = async (assignment, student) => {
 
 
 // Sends a file to the server
-const sendFile = async (filepath, url, auth) => {
+const sendFile = async ({ zippath, assignment, onyen, password }) => {
     return new Promise(function(resolve, reject) {
-        fs.createReadStream(filepath).pipe(request({
-            uri: url,
-            method: "POST",
-            auth: auth,
-            callback: (error, response, body) => {
-                if (error) {
-                    reject(error, response);
-                } else {
-                    resolve(body, response);
-                }
-            },
-        }));
+        const form = new FormData({ maxDataSize });
+        form.append('assignment', assignment);
+        form.append('onyen', onyen);
+        form.append('password', password);
+        form.append('zip', fs.createReadStream(zippath));
+        form.submit(server, function(error, response) {
+            if (error) {
+                reject(error);
+            } else if (response.statusCode !== 200) {
+                reject({
+                    ...response,
+                    message: `${response.statusCode} ${response.statusMessage}`
+                });
+            } else {
+                resolve(response);
+            }
+        });
     });
 };
 

@@ -5,11 +5,11 @@
 
 // Dependencies
 const FormData = require('form-data');
-const Cryptr   = require("cryptr");
-const prompts  = require("prompts");
-const chalk    = require("chalk");
-const zip      = require("bestzip");
-const fs       = require("fs");
+const Cryptr = require("cryptr");
+const prompts = require("prompts");
+const chalk = require("chalk");
+const zip = require("bestzip");
+const fs = require("fs");
 
 
 // Server URL
@@ -178,10 +178,15 @@ const submitAssignment = async (assignment, student) => {
         console.log(chalk.green("Success! Visit comp426.com to see your grade."));
     } catch (error) {
         console.log(chalk.red("Something went wrong and your assignment was not submitted for grading."));
-        if (error.statusCode === 401) {
-            console.log(chalk.red(`Incorrect username or password.`))
-        } else {
-            console.log(chalk.red(`Error message: ${error.message}`));
+        switch (error.statusCode) {
+            case 400:
+                console.log(chalk.red(`Assignment ${assignment} is currently not accepting submissions.`))
+                break;
+            case 401:
+                console.log(chalk.red(`Incorrect username or password.`));
+                break;
+            default:
+                console.log(chalk.red(`Error message: ${error.message}`));
         }
         return false;
     } finally {
@@ -194,13 +199,13 @@ const submitAssignment = async (assignment, student) => {
 
 // Sends a file to the server
 const sendFile = async ({ zippath, assignment, onyen, password }) => {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         const form = new FormData({ maxDataSize });
         form.append('assignment', assignment);
         form.append('onyen', onyen);
         form.append('password', password);
         form.append('zip', fs.createReadStream(zippath));
-        form.submit(server, function(error, response) {
+        form.submit(server, function (error, response) {
             if (error) {
                 reject(error);
             } else if (response.statusCode !== 200) {

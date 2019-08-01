@@ -1,3 +1,6 @@
 node_modules
 submission.zip
 .env
+.idea/comp426-cli.iml
+a03/package-lock.json
+package-lock.json

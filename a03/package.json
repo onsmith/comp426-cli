@@ -1,0 +1,16 @@
+{
+  "name": "a03",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": " test.js",
+  "scripts": {
+    "printing_functions": "node -r esm src/printing_functions.js",
+    "basic_functions": "node -r esm src/basic_functions.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}

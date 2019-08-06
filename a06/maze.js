@@ -4,8 +4,19 @@
 
 
 
+// Predefined mazes
+const simpleMaze = [
+  [1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 0, 1],
+  [1, 0, 0, 0, 0, 1],
+  [1, 1, 0, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1],
+];
 
-function Maze({ map, start = [0, 0], end, squareWidth = 100, squareHeight = 100 }) {
+
+
+
+function Maze({ map = simpleMaze, start = [2, 3], end = [4, 1], squareWidth = 100, squareHeight = 100 } = {}) {
   this.map = map;
   this.start = start;
   this.end = end;

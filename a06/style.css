@@ -6,7 +6,7 @@
 .maze {
   display: inline-block;
   position: relative;
-  border: 16px solid black;
+  border: 16px solid #4B9CD3;
 }
 
 .maze > table {
@@ -20,7 +20,7 @@
 }
 
 .maze td.wall {
-  background-color: blue;
+  background-color: #13294B;
 }
 
 .maze td.start {
@@ -40,4 +40,47 @@
   font-family: sans-serif;
   vertical-align: middle;
   font-size: 2.5em;
+}
+
+
+
+body.assignment-index > main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1em 2em;
+  font-family: sans-serif;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  box-sizing: border-box;
+  border: 5px solid #13294B;
+  border-radius: 10px;
+}
+
+/**
+ * $tarheelblue: #4B9CD3;
+ * $athleticsnavy: #13294B;
+ */
+
+body.assignment-index {
+  background-color: #13294B;
+  margin: 0;
+}
+
+body.assignment-index a {
+  color: #4B9CD3;
+  text-decoration: none;
+}
+
+body.assignment-index a:hover {
+  color: #13294B;
+}
+
+ol.assignment-links {
+  margin-top: 2em;
+}
+
+li.assignment-link {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 1.2em;
 }

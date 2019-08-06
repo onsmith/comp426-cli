@@ -1,0 +1,43 @@
+#root {
+  padding: 30px;
+  text-align: center;
+}
+
+.maze {
+  display: inline-block;
+  position: relative;
+  border: 16px solid black;
+}
+
+.maze > table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.maze td {
+  box-sizing: border-box;
+  border: 2px solid white;
+}
+
+.maze td.wall {
+  background-color: blue;
+}
+
+.maze td.start {
+  background-color: #c5fdff;
+}
+
+.maze td.end {
+  background-color: #c2ffaf;
+}
+
+.token {
+  position: absolute;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  text-align: center;
+  font-family: sans-serif;
+  vertical-align: middle;
+  font-size: 2.5em;
+}

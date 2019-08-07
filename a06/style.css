@@ -1,5 +1,8 @@
+/**
+ * Maze styles
+ */
 #root {
-  padding: 30px;
+  margin: 2em 0;
   text-align: center;
 }
 
@@ -43,8 +46,15 @@
 }
 
 
+/**
+ * Page styles
+ */
+body {
+  background-color: #13294B;
+  margin: 0;
+}
 
-body.assignment-index > main {
+body > main {
   max-width: 1000px;
   margin: 0 auto;
   padding: 1em 2em;
@@ -56,22 +66,12 @@ body.assignment-index > main {
   border-radius: 10px;
 }
 
-/**
- * $tarheelblue: #4B9CD3;
- * $athleticsnavy: #13294B;
- */
-
-body.assignment-index {
-  background-color: #13294B;
-  margin: 0;
-}
-
-body.assignment-index a {
+body a {
   color: #4B9CD3;
   text-decoration: none;
 }
 
-body.assignment-index a:hover {
+body a:hover {
   color: #13294B;
 }
 
@@ -83,4 +83,9 @@ li.assignment-link {
   margin-top: 1em;
   margin-bottom: 1em;
   font-size: 1.2em;
+}
+
+.back-button {
+  float: right;
+  font-size: 1.1em;
 }

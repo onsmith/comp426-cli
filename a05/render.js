@@ -1,6 +1,6 @@
 /**
  * Course: COMP 426
- * Assignment: a04
+ * Assignment: a05
  * Author: <type your name here>
  *
  * This script uses jQuery to build an HTML page with content taken from the
@@ -15,9 +15,7 @@
  * @param hero  A hero object (see data.js)
  */
 export const renderHeroCard = function(hero) {
-    // TODO: Generate HTML elements to represent the hero
-    // TODO: Return these elements as a string, HTMLElement, or jQuery object
-    // Example: return `<div>${hero.name}</div>`;
+    // TODO: Copy your code from a04 to render the hero card
 };
 
 
@@ -29,9 +27,7 @@ export const renderHeroCard = function(hero) {
  * @param  hero  The hero object to edit (see data.js)
  */
 export const renderHeroEditForm = function(hero) {
-    // TODO: Generate HTML elements to represent the hero edit form
-    // TODO: Return these elements as a string, HTMLElement, or jQuery object
-    // Example: return `<form>${hero.name}</form>`;
+    // TODO: Copy your code from a04 to render the hero edit form
 };
 
 
@@ -44,13 +40,14 @@ $(function() {
     const $root = $('#root');
 
     // TODO: Generate the heroes using renderHeroCard()
+    // NOTE: Copy your code from a04 for this part
 
     // TODO: Append the hero cards to the $root element
+    // NOTE: Copy your code from a04 for this part
 
-    // Pick a hero from the list at random
-    const randomHero = heroicData[Math.floor(Math.random() * heroicData.length)];
+    // TODO: Use jQuery to add a click handler for the edit button
 
-    // TODO: Generate the hero edit form using renderHeroEditForm()
+    // TODO: Use jQuery to add a click handler for the save button
 
-    // TODO: Append the hero edit form to the $root element
+    // TODO: Use jQuery to add a click handler for the cancel button
 });

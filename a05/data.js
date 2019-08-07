@@ -1,6 +1,6 @@
 /**
  * Course: COMP 426
- * Assignment: a04
+ * Assignment: a05
  *
  * This file defines data to be rendered to the page.
  */

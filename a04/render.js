@@ -37,9 +37,11 @@ export const renderHeroEditForm = function(hero) {
 
 
 /**
- * This function gets executed after the HTML finishes loading
+ * Given an array of hero objects, this function converts the data into HTML and
+ *     loads it into the DOM.
+ * @param  heroes  An array of hero objects to load (see data.js)
  */
-$(function() {
+export const loadHeroesIntoDOM = function(heroes) {
     // Grab a jQuery reference to the root HTML element
     const $root = $('#root');
 
@@ -48,9 +50,18 @@ $(function() {
     // TODO: Append the hero cards to the $root element
 
     // Pick a hero from the list at random
-    const randomHero = heroicData[Math.floor(Math.random() * heroicData.length)];
+    const randomHero = heroes[Math.floor(Math.random() * heroes.length)];
 
     // TODO: Generate the hero edit form using renderHeroEditForm()
 
     // TODO: Append the hero edit form to the $root element
+};
+
+
+
+/**
+ * Use jQuery to execute the loadHeroesIntoDOM function after the page loads
+ */
+$(function() {
+    loadHeroesIntoDOM(heroicData);
 });

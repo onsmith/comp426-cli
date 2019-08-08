@@ -33,9 +33,11 @@ export const renderHeroEditForm = function(hero) {
 
 
 /**
- * This function gets executed after the HTML finishes loading
+ * Given an array of hero objects, this function converts the data into HTML,
+ *     loads it into the DOM, and adds event handlers.
+ * @param  heroes  An array of hero objects to load (see data.js)
  */
-$(function() {
+export const loadHeroesIntoDOM = function(heroes) {
     // Grab a jQuery reference to the root HTML element
     const $root = $('#root');
 
@@ -45,9 +47,18 @@ $(function() {
     // TODO: Append the hero cards to the $root element
     // NOTE: Copy your code from a04 for this part
 
-    // TODO: Use jQuery to add a click handler for the edit button
+    // TODO: Use jQuery to add an event handler for clicking the edit button
 
-    // TODO: Use jQuery to add a click handler for the save button
+    // TODO: Use jQuery to add an event handler for form submission
 
-    // TODO: Use jQuery to add a click handler for the cancel button
+    // TODO: Use jQuery to add an event handler for clicking the cancel button
+};
+
+
+
+/**
+ * Use jQuery to execute the loadHeroesIntoDOM function after the page loads
+ */
+$(function() {
+    loadHeroesIntoDOM(heroicData);
 });

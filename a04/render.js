@@ -26,7 +26,7 @@ export const renderHeroCard = function(hero) {
  * Given a hero object, this function generates a <form> which allows the
  *     user to edit the fields of the hero. The form inputs should be
  *     pre-populated with the initial values of the hero.
- * @param  hero  The hero object to edit (see data.js)
+ * @param hero  The hero object to edit (see data.js)
  */
 export const renderHeroEditForm = function(hero) {
     // TODO: Generate HTML elements to represent the hero edit form
@@ -39,7 +39,7 @@ export const renderHeroEditForm = function(hero) {
 /**
  * Given an array of hero objects, this function converts the data into HTML and
  *     loads it into the DOM.
- * @param  heroes  An array of hero objects to load (see data.js)
+ * @param heroes  An array of hero objects to load (see data.js)
  */
 export const loadHeroesIntoDOM = function(heroes) {
     // Grab a jQuery reference to the root HTML element

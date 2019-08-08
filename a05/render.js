@@ -24,10 +24,47 @@ export const renderHeroCard = function(hero) {
  * Given a hero object, this function generates a <form> which allows the
  *     user to edit the fields of the hero. The form inputs should be
  *     pre-populated with the initial values of the hero.
- * @param  hero  The hero object to edit (see data.js)
+ * @param hero  The hero object to edit (see data.js)
  */
 export const renderHeroEditForm = function(hero) {
     // TODO: Copy your code from a04 to render the hero edit form
+};
+
+
+
+/**
+ * Handles the JavaScript event representing a user clicking on the "edit"
+ *     button for a particular hero.
+ * @param event  The JavaScript event that is being handled
+ */
+export const handleEditButtonPress = function(event) {
+    // TODO: Render the hero edit form for the clicked hero and replace the
+    //       hero's card in the DOM with their edit form instead
+};
+
+
+
+/**
+ * Handles the JavaScript event representing a user clicking on the "cancel"
+ *     button for a particular hero.
+ * @param event  The JavaScript event that is being handled
+ */
+export const handleCancelButtonPress = function(event) {
+    // TODO: Render the hero card for the clicked hero and replace the
+    //       hero's edit form in the DOM with their card instead
+};
+
+
+
+/**
+ * Handles the JavaScript event representing a user clicking on the "cancel"
+ *     button for a particular hero.
+ * @param event  The JavaScript event that is being handled
+ */
+export const handleEditFormSubmit = function(event) {
+    // TODO: Render the hero card using the updated field values from the
+    //       submitted form and replace the hero's edit form in the DOM with
+    //       their updated card instead
 };
 
 
@@ -42,16 +79,19 @@ export const loadHeroesIntoDOM = function(heroes) {
     const $root = $('#root');
 
     // TODO: Generate the heroes using renderHeroCard()
-    // NOTE: Copy your code from a04 for this part
+    //       NOTE: Copy your code from a04 for this part
 
     // TODO: Append the hero cards to the $root element
-    // NOTE: Copy your code from a04 for this part
+    //       NOTE: Copy your code from a04 for this part
 
-    // TODO: Use jQuery to add an event handler for clicking the edit button
+    // TODO: Use jQuery to add handleEditButtonPress() as an event handler for
+    //       clicking the edit button
 
-    // TODO: Use jQuery to add an event handler for form submission
+    // TODO: Use jQuery to add handleEditFormSubmit() as an event handler for
+    //       submitting the form
 
-    // TODO: Use jQuery to add an event handler for clicking the cancel button
+    // TODO: Use jQuery to add handleCancelButtonPress() as an event handler for
+    //       clicking the cancel button
 };
 
 

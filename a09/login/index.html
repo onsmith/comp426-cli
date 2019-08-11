@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Login to COMP 426</title>
+
+        <!-- Include links to CSS stylesheets below -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <div id="login">
+            <div class="login-card">
+                <div class="card-title">
+                    <h1>COMP 426 Login</h1>
+                </div>
+
+                <div class="content">
+                    <form id="login-form">
+                        <input id="email" type="email" name="email" title="email" placeholder="Email" required autofocus>
+                        <input id="password" type="password" name="password" title="password" placeholder="Password" required>
+
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <p id="message"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Include links to JavaScript files below -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -11,7 +11,7 @@ import {heroData} from "./data";
  * @param id
  * @returns {Promise<object>}
  */
-export async function getHeroByIdAsync(heroData, id) {
+export function getHeroByIdAsync(heroData, id) {
 
 }
 

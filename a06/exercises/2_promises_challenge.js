@@ -15,7 +15,7 @@ export function getTwoHeroes(heroData, hero1Id, hero2Id) {
 
 /**
  * This should do the same thing as the `getTwoHeroes` but return in half the time (there is no
- * dependency between them so this is expected behavior).
+ * dependency between the two heroes so this is expected behavior).
  *
  * @param heroData
  * @param hero1Id

@@ -1,5 +1,5 @@
 This is the list of classes that were used. Each item in this list is the entire class list.
-For example "subtitle has-text-grey has-text-weight-light" is the entire set of classes on line 80.
+For example "subtitle has-text-grey has-text-weight-light" is the entire set of classes on line 81.
 You won't see combinations in the file that are not shown here.
 
 button is-dark

@@ -1,0 +1,16 @@
+html, body{
+    height: 100%;
+    font-size: 1.1em;
+    background-color: #fafafa;
+}
+hr{
+    background-color: #e6e6e4;
+}
+blockquote {
+    /*background-color: #f0f0f0 !important;*/
+}
+.title{
+    font-size: 2.8em !important;
+}
+.subtitle{
+}

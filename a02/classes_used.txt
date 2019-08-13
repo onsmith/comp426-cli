@@ -6,6 +6,7 @@ button is-dark
 checkbox
 column
 columns
+columns is-multiline justify-center
 container
 content
 content has-text-centered
@@ -16,6 +17,7 @@ has-text-weight-bold
 hero is-dark is-fullheight
 hero-body
 input
+is-active
 is-capitalized
 label
 notification is-danger
@@ -27,7 +29,10 @@ subtitle has-text-grey
 subtitle has-text-grey has-text-weight-bold
 subtitle has-text-grey has-text-weight-light
 subtitle has-text-grey has-text-weight-normal
+subtitle has-text-grey is-italic
+tabs is-medium is-centered
 title
+title has-text-info is-family-secondary
 title has-text-weight-bold
 title has-text-weight-light
 title has-text-weight-normal

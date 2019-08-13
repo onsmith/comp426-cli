@@ -1,3 +1,8 @@
+/*
+This css file is here to add functionality and style elements that
+were needed. You do not need to edit this file or use it in any way.
+ */
+
 html, body{
     height: 100%;
     font-size: 1.1em;
@@ -6,11 +11,33 @@ html, body{
 hr{
     background-color: #e6e6e4;
 }
-blockquote {
-    /*background-color: #f0f0f0 !important;*/
-}
+
 .title{
     font-size: 2.8em !important;
 }
 .subtitle{
 }
+.justify-center .column{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.is-family-secondary{
+    font-family: 'Shrikhand', cursive !important;
+    font-size: 6em !important;
+    font-weight: lighter !important;
+}
+img {
+    height: 300px !important;
+    width: 300px !important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    min-width: 300px;
+    /*margin: .3em;*/
+}
+
+img:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transform: scale(1.05);
+}
+

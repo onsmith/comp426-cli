@@ -49,6 +49,7 @@ const exclusions = [
     '.gitkeep',
     'node_modules',
     'images',
+    'icons',
 ];
 
 

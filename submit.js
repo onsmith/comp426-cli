@@ -44,6 +44,13 @@ const assignments = [
     "a10",
 ];
 
+// Exclusion list for zip file
+const exclusions = [
+    '.gitkeep',
+    'node_modules',
+    'images',
+];
+
 
 // Cryptr instance
 const cryptr = new Cryptr("hyNcEaR63qTk13TQmHkr");
@@ -162,8 +169,11 @@ const submitAssignment = async (assignment, student) => {
 
     console.log(`\nSubmitting assignment ${chalk.blue(assignment)} for user ${chalk.blue(student.onyen)}...`);
     try {
+        const files = fs
+            .readdirSync(assignment)
+            .filter(x => !exclusions.includes(x));
         await zip({
-            source: "*",
+            source: files,
             destination: `../${zipfile}`,
             cwd: assignment,
         });

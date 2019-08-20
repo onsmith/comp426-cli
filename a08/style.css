@@ -1,0 +1,114 @@
+/**
+ * Main page
+ */
+body {
+  font-family: sans-serif;
+  background-color: #f0f0f0;
+}
+
+main {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2em 1em;
+  border-radius: 8px;
+  min-height: 80vh;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-weight: 300;
+}
+
+.subtitle {
+  color: #a0a0a0;
+  font-weight: 500;
+  margin-bottom: 3em;
+}
+
+
+
+/**
+ * Button
+ */
+#button {
+  display: block;
+  width: 100%;
+  color: #c70000;
+  font-size: 1.1em;
+  background-color: inherit;
+  border: 1px solid #c70000;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  transition: color 300ms, background-color 300ms;
+  cursor: pointer;
+  outline: none;
+}
+
+#button:hover {
+  color: #ffffff;
+  background-color: #c70000;
+}
+
+
+
+/**
+ * Code
+ */
+.code {
+  background-color: #303030;
+  color: #f0f0f0;
+  border-radius: 8px;
+  margin: 2em 0;
+  padding: 0.5em;
+  font-family: monospace;
+  font-size: 1.2em;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+
+
+/**
+ * Prompt
+ */
+#prompt {
+  display: block;
+  background-color: inherit;
+  color: inherit;
+  border: 0;
+  resize: none;
+  outline: none;
+  width: 100%;
+  padding-left: 3em;
+  box-sizing: border-box;
+  font-size: inherit;
+}
+
+
+/**
+ * State classes
+ */
+.no-show {
+  display: none !important;
+}
+
+.has-error {
+  color: red;
+}
+
+.has-success {
+  color: #76e685;
+}
+
+
+/**
+ * Message
+ */
+#message {
+  font-weight: bold;
+  font-size: 1.5em;
+}

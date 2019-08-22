@@ -13,12 +13,12 @@ const fs = require("fs");
 
 
 // Server URL
-//const host = "https://comp426fa19.cs.unc.edu";
-const server = {
-    host: "localhost",
-    port: 1337,
-    path: '/submissions',
-};
+const server = "https://comp426fa19.cs.unc.edu/submissions";
+// const server = {
+//     host: "localhost",
+//     port: 1337,
+//     path: '/submissions',
+// };
 
 // Max allowed zip file size
 const maxDataSize = 10 * 1024 * 1024;

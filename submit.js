@@ -41,7 +41,6 @@ const assignments = [
     "a07",
     "a08",
     "a09",
-    "a10",
 ];
 
 // Exclusion list for zip file
@@ -180,31 +179,46 @@ const submitAssignment = async (assignment, student) => {
         });
         // TODO: Check zip file size here and warn if it's too big
         console.log("Assignment code has been zipped. Now uploading, please wait...");
-        await sendFile({
+        const response = await sendFile({
             zippath: zipfile,
             onyen: student.onyen,
             password: student.password,
             assignment: assignment,
         });
-        console.log(chalk.green("Success! Visit comp426.com to see your grade."));
-    } catch (error) {
+        if (response.statusCode === 200) {
+            console.log(chalk.green("Success! Visit comp426.com to see your grade."));
+            return true;
+        }
         console.log(chalk.red("Something went wrong and your assignment was not submitted for grading."));
-        switch (error.statusCode) {
+        switch (response.statusCode) {
             case 400:
-                console.log(chalk.red(`Assignment ${assignment} is currently not accepting submissions.`))
+            case 404:
+                console.log(chalk.red(`Assignment ${assignment} is currently not accepting submissions.`));
                 break;
             case 401:
                 console.log(chalk.red(`Incorrect username or password.`));
                 break;
+            case 413:
+                console.log(chalk.red(`Your files are too large for the server! Make sure your folder size is under ~10 MB and then try again.`));
+                break;
+            case 429:
+                console.log(chalk.red(response.body));
+                break;
+            case 500:
+                console.log(chalk.red(`${response.statusCode} ${response.statusMessage}`));
+                break;
             default:
-                console.log(chalk.red(`Error message: ${error.message}`));
+                console.log(response.body);
+                break;
         }
+        return false;
+    } catch (error) {
+        console.log(chalk.red("Something went wrong and your assignment was not submitted for grading."));
+        console.log(chalk.red("An unknown error occurred."));
         return false;
     } finally {
         fs.unlinkSync(zipfile);
     }
-
-    return true;
 };
 
 
@@ -216,16 +230,20 @@ const sendFile = async ({ zippath, assignment, onyen, password }) => {
         form.append('onyen', onyen);
         form.append('password', password);
         form.append('zip', fs.createReadStream(zippath));
-        form.submit(server, function (error, response) {
+        form.submit(server, function (error, stream) {
             if (error) {
                 reject(error);
-            } else if (response.statusCode !== 200) {
-                reject({
-                    ...response,
-                    message: `${response.statusCode} ${response.statusMessage}`
-                });
             } else {
-                resolve(response);
+                let body = '';
+                stream.on('data', chunk => { body += chunk; });
+                stream.on('error', error => { reject(error); });
+                stream.on('end', () => {
+                    resolve({
+                        body: body,
+                        statusCode: stream.statusCode,
+                        statusMessage: stream.statusMessage,
+                    });
+                });
             }
         });
     });

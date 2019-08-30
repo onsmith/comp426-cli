@@ -5,8 +5,12 @@
   "description": "",
   "main": " test.js",
   "scripts": {
-    "printing_functions": "node -r esm src/printing_functions.js",
-    "basic_functions": "node -r esm src/basic_functions.js"
+    "mild_1": "node -r esm src/mild/mild_1.js",
+    "mild_2": "node -r esm src/mild/mild_2.js",
+    "medium_1": "node -r esm src/medium/medium_1.js",
+    "medium_2": "node -r esm src/medium/medium_2.js",
+    "medium_3": "node -r esm src/medium/medium_3.js",
+    "spicy_9": "node -r esm src/spicy/spicy_9.js"
   },
   "author": "",
   "license": "ISC",

@@ -52,6 +52,7 @@ export function searchName(car_data, searchTerm) {
 
 /**
  * Find all cars made in the years asked for.
+ * Sort the results by year in descending order. 
  *
  * @param car_data
  * @param {number[]} years - array of years to be included in the results e.g. [2010, 2012]

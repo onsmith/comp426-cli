@@ -14,7 +14,7 @@ export function getSum(array) {
 
 
 /**
- * Calculates the mean of an array of numbers.
+ * Calculates the median of an array of numbers.
  * @param {number[]} array
  * @returns {number|*}
  *

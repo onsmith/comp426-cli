@@ -1,17 +1,26 @@
 import {heroData} from "./data";
 import {getHeroByIdAsync} from "./3_async_await";
+
 const {performance} = require('perf_hooks');
 
 
+// This function is the example of the slow (3 seconds) version. 
 export async function getTwoHeroes(heroData, hero1Id, hero2Id) {
-    let hero1 = await getHeroByIdAsync(heroData, hero1Id);
-    let hero2 = await getHeroByIdAsync(heroData, hero2Id);
-    return {hero1, hero2}
+  let hero1 = await getHeroByIdAsync(heroData, hero1Id);
+  let hero2 = await getHeroByIdAsync(heroData, hero2Id);
+  return {hero1, hero2}
 }
 
 /**
  * This should do the same thing as the `getTwoHeroes` but return in half the time (there is no
  * dependency between the two heroes so this is expected behavior).
+ *
+ * It should return the following object
+ * {
+ *   hero1: the data,
+ *   hero2: the data
+ * }
+ *
  * @param heroData
  * @param hero1Id
  * @param hero2Id

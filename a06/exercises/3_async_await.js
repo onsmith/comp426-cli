@@ -16,7 +16,6 @@ export function getHeroByIdAsync(heroData, id) {
 }
 
 
-
 /*
 Below is code to help you get the right solution.
 

@@ -7,8 +7,7 @@
     "callbacks": "node -r esm exercises/1_callbacks.js",
     "promises": "node -r esm exercises/2_promises.js",
     "async/await": "node -r esm exercises/3_async_await.js",
-    "promise_challenge": "node -r esm exercises/2_promises_challenge.js",
-    "async/await_challenge": "node -r esm exercises/3_async_await_challenge.js"
+    "async/await_challenge": "node -r esm exercises/4_challenge.js"
   },
   "author": "",
   "license": "ISC",

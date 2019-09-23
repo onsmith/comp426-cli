@@ -8,6 +8,10 @@ import {heroData} from "./data";
  *
  * The promise should resolve after 1.5s (1500ms).
  *
+ * Note than when you are creating promises, the first thing your function should
+ * do is return the promise object. Then inside this object you do the "work"
+ * that takes time.
+ *
  * @param heroData
  * @param id
  * @returns {Promise<object>}

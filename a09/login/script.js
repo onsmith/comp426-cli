@@ -13,7 +13,7 @@ $(function() {
     }, {});
     
     $.ajax({
-      url: 'http://localhost:1337/sessions/login', //'https://comp426fa19.cs.unc.edu/sessions/login',
+      url: 'https://comp426fa19.cs.unc.edu/sessions/login',
       type: 'POST',
       data,
       xhrFields: {

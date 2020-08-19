@@ -1,4 +1,4 @@
-import mpg_data from "./data/mpg_data";
+import mpg_data from "./data/mpg_data.js";
 
 /*
 mpg_data is imported for you but that is for testing purposes only. All of the functions should use
@@ -52,7 +52,7 @@ export function searchName(car_data, searchTerm) {
 
 /**
  * Find all cars made in the years asked for.
- * Sort the results by year in descending order. 
+ * Sort the results by year in descending order.
  *
  * @param car_data
  * @param {number[]} years - array of years to be included in the results e.g. [2010, 2012]

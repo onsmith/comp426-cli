@@ -1,5 +1,5 @@
 import keypress from 'keypress';
-import Game from "./engine/game";
+import Game from "./engine/game.js";
 
 keypress(process.stdin);
 

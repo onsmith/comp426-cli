@@ -10,7 +10,7 @@
 
 /**
  * This function should use axios to make a GET request to the following url:
- *   https://comp426fa19.cs.unc.edu/a08/heroes
+ *   https://comp426-1fa20.cs.unc.edu/a08/heroes
  *
  * The axios request should be "await"ed, and once the response is available,
  *   the body of the HTTP response (which is in JSON format) should be returned
@@ -25,7 +25,7 @@ export async function fn1() {
 
 /**
  * Like fn1(), this function should use axios to make a GET request to the
- *   following url: https://comp426fa19.cs.unc.edu/a08/heroes
+ *   following url: https://comp426-1fa20.cs.unc.edu/a08/heroes
  *
  * However, this function should pass the following GET parameter to the server:
  *   { sort: 'first ASC' }
@@ -45,7 +45,7 @@ export async function fn2() {
 
 /**
  * This function should use axios to make a POST request to the following url:
- *   https://comp426fa19.cs.unc.edu/a08/users
+ *   https://comp426-1fa20.cs.unc.edu/a08/users
  *
  * The POST HTTP verb is conventionally used when instructing the server to
  *   create a new record in the database. The new record's data is traditionally
@@ -98,7 +98,7 @@ export async function fn4() {
 
 /**
  * This function should use axios to make a PUT request to the following url:
- *   https://comp426fa19.cs.unc.edu/a08/headers
+ *   https://comp426-1fa20.cs.unc.edu/a08/headers
  *
  * No parameters should be sent with the request, but instead a special HTTP
  *   request header should be added to your request named
@@ -116,7 +116,7 @@ export async function fn5() {
 
 /**
  * This function should use axios to make a GET request to the following url:
- *   https://comp426fa19.cs.unc.edu/a08/headers
+ *   https://comp426-1fa20.cs.unc.edu/a08/headers
  *
  * No parameters should be sent with the request.
  *

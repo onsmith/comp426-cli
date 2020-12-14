@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bestzip": "^2.1.4",
+    "bestzip": "^2.1.7",
     "chalk": "^2.4.2",
     "cryptr": "^4.0.2",
     "dotenv": "^8.0.0",

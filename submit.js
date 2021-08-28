@@ -13,7 +13,7 @@ const fs = require("fs");
 
 
 // Server URL
-const server = "https://comp426-1fa20.cs.unc.edu/submissions";
+const server = "https://api.comp426.com/submissions";
 // const server = {
 //     host: "localhost",
 //     port: 1337,
